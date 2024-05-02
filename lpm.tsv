@@ -1,0 +1,3 @@
+eigenpy	git@github.com:stack-of-tasks/eigenpy	v3.5.1
+hpp-fcl	git@github.com:humanoid-path-planner/hpp-fcl	devel
+pinocchio	git@gitlab.inria.fr:jucarpen/pinocchio	pinocchio-3x	-DBUILD_WITH_COLLISION_SUPPORT=ON
