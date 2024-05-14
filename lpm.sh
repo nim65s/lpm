@@ -137,7 +137,7 @@ case $1 in
     "update") lpm_update ;;
     "lock") lpm_lock ;;
     *)
-        echo "Error: valid commands are: build_release build_debug build clean clone update lock"
+        echo "Error: valid commands are: build_release build_debug clean clone update lock"
         exit 2
         ;;
 esac
