@@ -119,13 +119,13 @@ if [[ ! -f lpm.lock ]]; then
 fi
 
 case $1 in
-"build_release" | "build") lpm_build_release ;;
-"build_debug") lpm_build_debug ;;
-"clean") lpm_clean ;;
-"clone") lpm_clone ;;
-"update") lpm_update ;;
-"lock") lpm_lock ;;
-*)
+    "build_release" | "build") lpm_build_release ;;
+    "build_debug") lpm_build_debug ;;
+    "clean") lpm_clean ;;
+    "clone") lpm_clone ;;
+    "update") lpm_update ;;
+    "lock") lpm_lock ;;
+    *)
     echo "Error: valid commands are: build_release build_debug build clean clone update lock"
     exit 2
     ;;
