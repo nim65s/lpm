@@ -15,6 +15,11 @@ function lpm_clone {
         then
             echo "[LPM] Clone ${NAME}"
             git clone --recursive --branch "${BRANCH}" "${URL}" "${NAME}"
+        fi
+        if git -C "${NAME}" remote -v | grep -q '^lpm'
+        then
+            git -C "${NAME}" remote add lpm "${URL}"
+        else
             git -C "${NAME}" remote set-url lpm "${URL}"
         fi
         if [[ -f lpm.lock ]]
