@@ -16,12 +16,8 @@ function lpm_clone {
             echo "[LPM] Clone ${NAME}"
             git clone --recursive --branch "${BRANCH}" "${URL}" "${NAME}"
         fi
-        if git -C "${NAME}" remote -v | grep -q '^lpm'
-        then
-            git -C "${NAME}" remote add lpm "${URL}"
-        else
-            git -C "${NAME}" remote set-url lpm "${URL}"
-        fi
+        ACTION="$(git -C "${NAME}" remote -v | grep -q '^lpm' && echo set-url || echo add)"
+        git -C "${NAME}" remote "${ACTION}" lpm "${URL}"
         if [[ -f lpm.lock ]]
         then
             COMMIT="$(grep "${NAME}" lpm.lock | cut -f1)"
