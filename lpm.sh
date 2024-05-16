@@ -20,7 +20,7 @@ function lpm_clone {
         git -C "${NAME}" remote "${ACTION}" lpm "${URL}"
         if [[ -f lpm.lock ]]
         then
-            COMMIT="$(grep "${NAME}" lpm.lock | cut -f2)"
+            COMMIT="$(grep "${NAME}	" lpm.lock | cut -f2)"
             git -C "${NAME}" checkout "${COMMIT}"
         else
             git -C "${NAME}" checkout "${BRANCH}"
