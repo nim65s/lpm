@@ -14,12 +14,18 @@ function lpm_clone {
         if [[ ! -d ${NAME} ]]
         then
             echo "[LPM] Clone ${NAME}"
-            git clone --recursive --branch "${BRANCH}" "${URL}" "${NAME}"
-            git -C "${NAME}" remote set-url lpm "${URL}"
+            echo "DEBUG: git clone \"${URL}\" \"${NAME}\""
+            git clone "${URL}" "${NAME}"
+            echo "DEBUG: git -C \"${NAME}\" checkout \"${BRANCH}\""
+            git -C "${NAME}" checkout "${BRANCH}"
+            echo "DEBUG: git -C \"${NAME}\" submodule update --init "
+            git -C "${NAME}" submodule update --init 
         fi
+        ACTION="$(git -C "${NAME}" remote -v | grep -q '^lpm' && echo set-url || echo add)"
+        git -C "${NAME}" remote "${ACTION}" lpm "${URL}"
         if [[ -f lpm.lock ]]
         then
-            COMMIT="$(grep "${NAME}" lpm.lock | cut -f1)"
+            COMMIT="$(grep "^${NAME}	" lpm.lock | cut -f2)"
             git -C "${NAME}" checkout "${COMMIT}"
         else
             git -C "${NAME}" checkout "${BRANCH}"
