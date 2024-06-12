@@ -19,7 +19,7 @@ function lpm_clone {
             echo "DEBUG: git -C \"${NAME}\" checkout \"${BRANCH}\""
             git -C "${NAME}" checkout "${BRANCH}"
             echo "DEBUG: git -C \"${NAME}\" submodule update --init "
-            git -C "${NAME}" submodule update --init 
+            git -C "${NAME}" submodule update --init
         fi
         ACTION="$(git -C "${NAME}" remote -v | grep -q '^lpm' && echo set-url || echo add)"
         git -C "${NAME}" remote "${ACTION}" lpm "${URL}"
